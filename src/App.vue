@@ -34,7 +34,6 @@
           >
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -44,13 +43,8 @@ export default {
   name: 'App',
   data() {
     return {
-      name: 'Adrian',
-      tasks: [
-        { action: 'Wet flowers', done: false },
-        { action: 'Eat breakfast', done: true },
-        { action: 'Sleep late', done: true },
-        { action: 'Work', done: false },
-      ],
+      name: 'Silvia',
+      tasks: [],
       hideCompleted: true,
       newItemText: '',
     };
@@ -68,8 +62,15 @@ export default {
         action: this.newItemText,
         done: false,
       });
+      localStorage.setItem('listomania', JSON.stringify(this.tasks));
       this.newItemText = '';
     },
+  },
+  created() {
+    let data = localStorage.getItem('listomania');
+    if (data != null) {
+      this.tasks = JSON.parse(data);
+    }
   },
 };
 </script>
